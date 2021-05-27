@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _1c_password_reset
@@ -41,15 +34,15 @@ namespace _1c_password_reset
             else if (!File.Exists(cestart))
             {
                 Color colorWarning = Color.Red;
-                label1.ForeColor = colorWarning;
-                label1.Text = "Файл для запуска 1с не существует.\n Попробуйсте запустить 1с вручную!";
+                label4.ForeColor = colorWarning;
+                label4.Text = "Файл для запуска 1с не существует.\n Попробуйсте запустить 1с вручную!";
             }
         }
         public void SqlConnectionStep1()
         {
             string dbName = richTextBox1.Text;
-            string sqlLogin = richTextBox3.Text;
-            string sqlPass = richTextBox4.Text;
+            string sqlLogin = richTextBox2.Text;
+            string sqlPass = richTextBox3.Text;
             
             string connectionString = @"Initial Catalog=" + dbName + ";Persist Security Info=True;User ID=" + sqlLogin + ";Password=" + sqlPass;
             SqlConnection connect = new SqlConnection(connectionString);
@@ -70,16 +63,16 @@ namespace _1c_password_reset
                     int number2 = paramsRename.ExecuteNonQuery();
 
                     Color color = Color.Blue;
-                    label3.ForeColor = color;
-                    label3.Text = "Пользователи 1c отключены!\n\nЗайдите в конфигуратор 1с\nи НЕ ЗАКРЫВАЯ его нажмите Шаг 2!";
+                    label4.ForeColor = color;
+                    label4.Text = "Пользователи 1c ОТКЛЮЧЕНЫ!\n\nЗайдите в конфигуратор 1с\nи НЕ ЗАКРЫВАЯ его нажмите Шаг 2!";
 
                     start1cConf();
                 }
                 catch (SqlException e)
                 {
                     Color colorWarning = Color.Red;
-                    label3.ForeColor = colorWarning;
-                    label3.Text = "Не удалось подключится к SQL!\n\nПроверьте правильность написания имени\nсервера, или базы SQL!";                
+                    label4.ForeColor = colorWarning;
+                    label4.Text = "Не удалось подключится к SQL!\n\nПроверьте правильность написания имени\nбазы, логина или пароля SQL!";                
                 }
                 finally
                 {
@@ -90,9 +83,9 @@ namespace _1c_password_reset
         public void SqlConnectionStep2()
         {
             string dbName = richTextBox1.Text;
-            string sqlLogin = richTextBox3.Text;
-            string sqlPass = richTextBox4.Text;
-            // string connectionString = @"Data Source = " + serverName + ";Initial Catalog=" + dbName + ";Integrated Security=True";
+            string sqlLogin = richTextBox2.Text;
+            string sqlPass = richTextBox3.Text;
+        
             string connectionString = @"Initial Catalog=" + dbName + ";Persist Security Info=True;User ID=" + sqlLogin + ";Password=" + sqlPass;
             
             SqlConnection connect = new SqlConnection(connectionString);
@@ -116,14 +109,14 @@ namespace _1c_password_reset
                     int number3 = paramsReturn.ExecuteNonQuery();
 
                     Color color = Color.Blue;
-                    label3.ForeColor = color;
-                    label3.Text = "Пользователи 1c загруженны!\n\nСоздайте своего пользователя,\nили измените пароль к существующему.";
+                    label4.ForeColor = color;
+                    label4.Text = "Пользователи 1c ЗАГРУЖЕНЫ!\n\nСоздайте своего пользователя,\nили измените пароль к существующему.";
                 }
                 catch (SqlException e)
                 {
                     Color colorWarning = Color.Red;
-                    label3.ForeColor = colorWarning;
-                    label3.Text = "Подключение у SQL серверу не удалось!\n\nПроверьте правильность написания имени\n сервера, или базы SQL!";
+                    label4.ForeColor = colorWarning;
+                    label4.Text = "Не удалось подключится к SQL!\n\nПроверьте правильность написания имени\nбазы, логина или пароля SQL!!";
                 }
                 finally
                 {
@@ -144,8 +137,8 @@ namespace _1c_password_reset
             else
             {
                 Color colorWarning = Color.Red;
-                label3.ForeColor = colorWarning;
-                label3.Text = "Сначало выполните ШАГ 1!";
+                label4.ForeColor = colorWarning;
+                label4.Text = "Сначало выполните ШАГ 1!";
                 return;
             }            
             
@@ -159,12 +152,12 @@ namespace _1c_password_reset
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }    
-        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        }
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
-        private void richTextBox4_TextChanged(object sender, EventArgs e)
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -172,18 +165,17 @@ namespace _1c_password_reset
         {
 
         }
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
- 
-        private void label6_Click(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
 
-        }
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
+        }        
     }
 }
