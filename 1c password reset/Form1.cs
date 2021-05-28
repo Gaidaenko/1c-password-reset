@@ -40,9 +40,9 @@ namespace _1c_password_reset
         }
         public void SqlConnectionStep1()
         {
-            string dbName = richTextBox1.Text;
-            string sqlLogin = richTextBox2.Text;
-            string sqlPass = richTextBox3.Text;
+            string dbName = textBox1.Text;
+            string sqlLogin = textBox2.Text;
+            string sqlPass = textBox3.Text;
             
             string connectionString = @"Initial Catalog=" + dbName + ";Persist Security Info=True;User ID=" + sqlLogin + ";Password=" + sqlPass;
             SqlConnection connect = new SqlConnection(connectionString);
@@ -64,7 +64,7 @@ namespace _1c_password_reset
 
                     Color color = Color.Blue;
                     label4.ForeColor = color;
-                    label4.Text = "Пользователи 1c ОТКЛЮЧЕНЫ!\n\nЗайдите в конфигуратор 1с\nи НЕ ЗАКРЫВАЯ его нажмите Шаг 2!";
+                    label4.Text = "Пользователи 1c ОТКЛЮЧЕНЫ!\n\nЗайдите в конфигуратор 1с\nи НЕ ЗАКРЫВАЯ ЕГО нажмите Шаг 2!";
 
                     start1cConf();
                 }
@@ -82,9 +82,9 @@ namespace _1c_password_reset
         }
         public void SqlConnectionStep2()
         {
-            string dbName = richTextBox1.Text;
-            string sqlLogin = richTextBox2.Text;
-            string sqlPass = richTextBox3.Text;
+            string dbName = textBox1.Text;
+            string sqlLogin = textBox2.Text;
+            string sqlPass = textBox3.Text;
         
             string connectionString = @"Initial Catalog=" + dbName + ";Persist Security Info=True;User ID=" + sqlLogin + ";Password=" + sqlPass;
             
@@ -149,18 +149,6 @@ namespace _1c_password_reset
         {
 
         }
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void richTextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -176,6 +164,18 @@ namespace _1c_password_reset
         private void label4_Click(object sender, EventArgs e)
         {
 
-        }        
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
