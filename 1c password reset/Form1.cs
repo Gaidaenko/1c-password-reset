@@ -68,7 +68,7 @@ namespace _1c_password_reset
 
                     start1cConf();
                 }
-                catch (SqlException e)
+                catch 
                 {
                     Color colorWarning = Color.Red;
                     label4.ForeColor = colorWarning;
@@ -85,9 +85,9 @@ namespace _1c_password_reset
             string dbName = textBox1.Text;
             string sqlLogin = textBox2.Text;
             string sqlPass = textBox3.Text;
-        
+
             string connectionString = @"Initial Catalog=" + dbName + ";Persist Security Info=True;User ID=" + sqlLogin + ";Password=" + sqlPass;
-            
+
             SqlConnection connect = new SqlConnection(connectionString);
 
             string sqlDropTable = @"DROP TABLE v8users";
@@ -112,11 +112,11 @@ namespace _1c_password_reset
                     label4.ForeColor = color;
                     label4.Text = "Пользователи 1c ЗАГРУЖЕНЫ!\n\nСоздайте своего пользователя,\nили измените пароль к существующему.";
                 }
-                catch (SqlException e)
+                catch
                 {
                     Color colorWarning = Color.Red;
                     label4.ForeColor = colorWarning;
-                    label4.Text = "Не удалось подключится к SQL!\n\nПроверьте правильность написания имени\nбазы, логина или пароля SQL!!";
+                    label4.Text = "ЕСЛИ ВЫ ВЫПОЛНИЛИ ПЕРВЫМ ШАГ2 ПРИ ЗАПУЩЕННОМ\nКОНФИГУРАТОРЕ, ВЕРОЯТНО ВАМ ПОНАДОБИТСЯ\nВОССТАНОВЛЕНИЕ БАЗЫ!";
                 }
                 finally
                 {
@@ -130,19 +130,21 @@ namespace _1c_password_reset
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (CheckProcess() == true)
-            {
-                CheckProcess();
-            }
-            else
+           
+            if (CheckProcess() == false)
             {
                 Color colorWarning = Color.Red;
                 label4.ForeColor = colorWarning;
                 label4.Text = "Сначало выполните ШАГ 1!";
                 return;
-            }            
-            
+            }
+            if (CheckProcess() == true)
+            {
+                CheckProcess();               
+            }
+
             SqlConnectionStep2();
+            return;
         }
 
         private void Form1_Load(object sender, EventArgs e)
